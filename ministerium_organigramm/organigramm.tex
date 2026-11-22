@@ -1,0 +1,148 @@
+\documentclass[12pt]{article}
+\usepackage[a3paper,landscape,margin=12mm]{geometry}
+\usepackage{fontspec}
+\usepackage[ngerman]{babel}
+\usepackage{etoolbox}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\setmainfont{TeX Gyre Heros}
+\pagestyle{empty}
+
+\definecolor{nacht}{HTML}{1F2A44}
+\definecolor{gold}{HTML}{B8901F}
+\definecolor{iris}{HTML}{E8C547}
+\definecolor{papier}{HTML}{F4F2EC}
+\definecolor{grau}{HTML}{5A5A5A}
+
+% Column geometry in mm; 8 columns fill the 396 mm text width of A3 landscape.
+\def\colw{46}
+\def\gap{3.9}
+\def\busy{-112}
+
+\tikzset{
+  hauptlinie/.style={draw=gold, line width=1.2pt},
+  linie/.style={draw=nacht!60, line width=0.5pt},
+  leitung/.style={draw=gold, line width=1.5pt, fill=white, inner sep=3mm,
+    align=center, minimum width=70mm},
+  stab/.style={draw=nacht!60, fill=papier, line width=0.5pt, inner sep=2mm,
+    align=center, text width=60mm},
+  abtkopf/.style={fill=nacht, text=white, inner xsep=2mm, inner ysep=2mm,
+    align=center, text width=\colw mm-4mm, minimum height=23mm},
+  referat/.style={draw=nacht!40, fill=papier, line width=0.4pt, inner xsep=2mm,
+    inner ysep=3mm, align=left, text width=\colw mm-7mm,
+    execute at begin node={\hyphenpenalty=2000 }},
+}
+
+% #1 column index, #2 Kuerzel, #3 Bezeichnung, #4 Leitung (may be empty)
+\newcommand{\abteilung}[4]{%
+  \pgfmathsetmacro{\abtx}{#1*(\colw+\gap)}%
+  \node[abtkopf, anchor=north west] (abt-#2) at (\abtx mm, \busy mm - 6mm)
+    {\ifstrempty{#3}
+       {\textbf{Abteilung #2}}
+       {{\footnotesize\color{iris}Abteilung #2}\\[2pt]\textbf{#3}}%
+     \ifstrempty{#4}{}{\\[1pt]{\small (#4)}}};
+  \draw[hauptlinie] (abt-#2.north) -- ++(0,6mm);
+  \xdef\letzter{abt-#2}\xdef\abt{#2}%
+}
+
+% #1 Kuerzel, #2 Bezeichnung, #3 Leitung (may be empty), #4 Untertitel (may be empty)
+\newcommand{\referat}[4]{%
+  \node[referat, anchor=north east] (ref-#1) at ($(\letzter.south east)+(0,-5mm)$)
+    {\raggedright\textbf{#1}\hspace{0.5em}#2%
+     \ifstrempty{#3}{}{\\(#3)}%
+     \ifstrempty{#4}{}{\\[2pt]{\footnotesize\color{grau}#4}}};
+  \draw[linie] ($(abt-\abt.south west)+(1.5mm,0)$) |- (ref-#1.west);
+  \xdef\letzter{ref-#1}%
+}
+
+\newcommand{\hinweis}[1]{%
+  \node[referat, anchor=north east, font=\itshape] (hinweis-\abt)
+    at ($(\letzter.south east)+(0,-5mm)$) {#1};
+  \draw[linie] ($(abt-\abt.south west)+(1.5mm,0)$) |- (hinweis-\abt.west);
+  \xdef\letzter{hinweis-\abt}%
+}
+
+\begin{document}
+\centering
+\begin{tikzpicture}[x=1mm, y=1mm]
+  \pgfmathsetmacro{\breite}{8*\colw+7*\gap}
+  \pgfmathsetmacro{\mitte}{\breite/2}
+
+  % Wappen
+  \begin{scope}[shift={(11,-13)}, x=10mm, y=10mm]
+    \filldraw[fill=gold, draw=nacht, line width=1.2pt]
+      (-1,1.1) -- (1,1.1) -- (1,0.1)
+      .. controls (1,-0.7) and (0.4,-1.0) .. (0,-1.3)
+      .. controls (-0.4,-1.0) and (-1,-0.7) .. (-1,0.1) -- cycle;
+    \fill[nacht] (-0.75,0.05) .. controls (-0.3,0.6) and (0.3,0.6) .. (0.75,0.05)
+      .. controls (0.3,-0.45) and (-0.3,-0.45) .. (-0.75,0.05) -- cycle;
+    \fill[iris] (0,0.05) circle (0.29);
+    \fill[nacht] (0,0.34) .. controls (0.09,0.15) and (0.09,-0.05) .. (0,-0.24)
+      .. controls (-0.09,-0.05) and (-0.09,0.15) .. (0,0.34) -- cycle;
+  \end{scope}
+
+  \node[anchor=north west, align=left, text=nacht] at (27,-1)
+    {{\fontsize{30}{34}\selectfont\bfseries Ministerium für drakonische Sicherheit}\\[3mm]
+     {\fontsize{16}{19}\selectfont Organigramm}};
+  \node[anchor=north east, align=right, text=grau] at (\breite,-15)
+    {Stand: 22. November 2026};
+  \draw[hauptlinie] (0,-29) -- (\breite,-29);
+
+  \node[leitung, anchor=north] (leitung) at (\mitte,-42)
+    {{\small\color{grau}Leitung}\\[2pt]{\Large\bfseries Rognar Steinfels}};
+
+  \node[stab, anchor=east] (presse) at (\mitte-15,-84)
+    {{\footnotesize\color{grau}Stabsstelle}\\[1pt]Pressestelle\\
+     {\small\itshape ,,Goldige Kommunikation``}};
+  \node[stab, anchor=west] (gleich) at (\mitte+15,-84)
+    {{\footnotesize\color{grau}Stabsstelle}\\[1pt]Gleichstellungsbeauftragte\\
+     {\small Faye, Werwölfe, Magier und andere Wesenheiten}};
+
+  \draw[hauptlinie] (leitung.south) -- (\mitte,\busy);
+  \draw[hauptlinie] (presse.east) -- (\mitte,-84);
+  \draw[hauptlinie] (gleich.west) -- (\mitte,-84);
+  \draw[hauptlinie] (\colw/2,\busy) -- (\breite-\colw/2,\busy);
+
+  \abteilung{0}{Z}{Zentrale Dienste}{}
+  \referat{Z 1}{Personal und Rekrutierung}{}{}
+  \referat{Z 2}{Besoldung und Fortbildung}{}{}
+  \referat{Z 3}{Haushalt}{}{}
+  \referat{Z 4}{IT}{}{quelloffen, on-prem}
+  \referat{Z 5}{Hausdienste}{}{}
+
+  \abteilung{1}{1}{Zoll}{}
+  \referat{11}{Brückenzoll}{Ochsenknochen}{Brückenunterhaltung, Zollsprachregelung (,,Drachenzoll``), Vollstreckung}
+  \referat{12}{Hafenzoll}{}{}
+  \referat{13}{Einfuhrkontrolle Feenwaren}{}{}
+  \referat{14}{Grenzübergänge Niemalsland}{}{}
+  \referat{15}{Asservatenkammer}{}{}
+
+  \abteilung{2}{2}{Höfe und Reiche}{}
+  \referat{21}{Sommerhof}{}{Festgenehmigungen, Biosicherheit}
+  \referat{22}{Winterhof}{}{Anwerbeersuchen, Wehrfragen}
+  \referat{23}{Weißer Rat}{}{Bestandsschutz, Traditionspflege}
+  \referat{24}{Innere Reiche}{}{Zeitkontinuität, Kristallprävention}
+  \referat{25}{Äußere Reiche}{}{Grenzflächenstabilität, Außenkontakte}
+
+  \abteilung{3}{3}{Nachrichtendienst}{}
+  \referat{31}{Auswertung}{}{}
+  \referat{32}{Fernaufklärung}{}{Kristallkugeln, Spiegel}
+
+  \abteilung{4}{4}{Arkane Archäologie}{}
+  \referat{41}{Grabungen}{}{}
+  \referat{42}{Artefaktsicherung und Restaurierung}{}{}
+  \referat{43}{Depot und Archiv}{}{}
+
+  \abteilung{5}{5}{Gefahrenabwehr}{}
+  \referat{51}{Katastrophenschutz}{}{}
+
+  \abteilung{6}{6}{Beschwerden}{Steinbrech}
+  \referat{61}{Beschwerdeannahme}{}{}
+  \referat{62}{Widerspruchsstelle}{}{}
+  \referat{63}{Beschwerden über die Beschwerdestelle}{}{}
+
+  \abteilung{7}{13}{}{v.~Rossum}
+  \hinweis{siehe gesondertes Organigramm}
+\end{tikzpicture}
+\end{document}
