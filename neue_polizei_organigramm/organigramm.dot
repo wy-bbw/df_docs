@@ -1,21 +1,40 @@
 graph organigramm {
-    leitung[label = "Leitung\n(v. Rossum)"]
-    leitung_welt[label = "profane Leitung"]
-    leitung_magie[label = "magische Leitung"]
+    rankdir=LR
+    node[shape=box]
+    labelloc=t
+    label=<<FONT POINT-SIZE="26"><B>Abteilung 13</B></FONT><BR/><FONT POINT-SIZE="14"><I>flach. agil. übernatürlich.</I></FONT><BR/><FONT POINT-SIZE="11">Wir stellen ein! Offene Stellen in unserem Portal und im monatlichen Rundpergament.</FONT><BR/> >
+
+    leitung[label = <Leitung<BR/>(v. Rossum)<BR/><FONT POINT-SIZE="10" COLOR="#555555">Head of Abteilung 13</FONT>>]
+    leitung_welt[label = <profane Leitung<BR/><FONT POINT-SIZE="10" COLOR="#555555">Mundane Operations</FONT>>]
+    leitung_magie[label = <magische Leitung<BR/><FONT POINT-SIZE="10" COLOR="#555555">Arcane Operations</FONT>>]
     ermittlungen[label = "Ermittlungen\n(Frau Staufer)"]
-    magieforensik[label = "Magieforensik\n(v. Wurmmoor)"]
-    heilung[label = "Übernatürliche Heilung\n(v. Wurmmoor)"]
-    lizenz[label = "Magische Lizenzerteilung\n(Herr Schnarch)"]
-    beschaffung_profan[label = "Beschaffung profan"]
-    beschaffung_magisch[label = "Beschaffung magisch"]
-    beschwerden[label = "Beschwerden"]
-    personal[label = "Personal"]
-    buerokra[label = "Bürokratieabbau"]
-    controll[label = "Controlling"]
-    betruung[label = "Betreuung"]
-    enablemt[label = "Enablement"]
-    administ[label = "Verwaltung"]
-    entwickl[label = "Entwicklung"]
+    magieforensik[label = <Magieforensik<BR/>(v. Wurmmoor)<BR/><FONT POINT-SIZE="10" COLOR="#555555">Restmagie-Analyse, Fluchspuren, Ektoplasma-Labor</FONT>>]
+    heilung[label = <Übernatürliche Heilung<BR/>(v. Wurmmoor)<BR/><FONT POINT-SIZE="10" COLOR="#555555">Bisse, Flüche, Nachsorge<BR/>an Vollmond geschlossen</FONT>>]
+    lizenz[label = <Magische Lizenzerteilung<BR/>(Herr Schnarch)<BR/><FONT POINT-SIZE="10" COLOR="#555555">Bearbeitungszeit 6 bis 8 Mondzyklen</FONT>>]
+    beschaffung_profan[label = <Beschaffung profan<BR/><FONT POINT-SIZE="10" COLOR="#555555">Bürobedarf, Streifenwagen,<BR/>Silbermunition (Grauzone, s. Beschaffung magisch)</FONT>>]
+    beschaffung_magisch[label = <Beschaffung magisch<BR/><FONT POINT-SIZE="10" COLOR="#555555">Reagenzien, Kreide, Salz in Großgebinden,<BR/>Kalteisenmunition (getrennt vom Feenpersonal lagern)</FONT>>]
+    beschwerden[label = <Beschwerden<BR/><FONT POINT-SIZE="10" COLOR="#555555">Zuständigkeitsklärung profan/magisch</FONT>>]
+    personal[label = <Personal<BR/><FONT POINT-SIZE="10" COLOR="#555555">Talent Acquisition, Einstellungstests,<BR/>Onboarding für Menschen und Neumenschen</FONT>>]
+    buerokra[label = <Bürokratieabbau<BR/><FONT POINT-SIZE="10" COLOR="#555555">Antragsstelle für Bürokratieabbau<BR/>(Formular B-13a, dreifach)</FONT>>]
+    controll[label = <Controlling<BR/><FONT POINT-SIZE="10" COLOR="#555555">Korruptionsprävention, Mittelverwendung<BR/>im Sinne der Abteilung 13, KPIs und OKRs</FONT>>]
+    betruung[label = <Betreuung<BR/><FONT POINT-SIZE="10" COLOR="#555555">Mentoring, Supervision nach Erstkontakt, Obstkorb</FONT>>]
+    enablemt[label = <Enablement<BR/><FONT POINT-SIZE="10" COLOR="#555555">Empowerment, Synergien,<BR/>Pizza-Freitag (Selbstzahler)</FONT>>]
+    administ[label = <Verwaltung<BR/><FONT POINT-SIZE="10" COLOR="#555555">elektronische Aktenführung,<BR/>Ausgabe elektronisch oder auf Pergament (auf Abruf)</FONT>>]
+    entwickl[label = <Entwicklung<BR/><FONT POINT-SIZE="10" COLOR="#555555">profan: Datenbanken, Lagebild (Thalanpir), Prozess-Mining (Seelonis),<BR/>natürlich alles quelloffen und on-prem...<BR/>magisch: Antimagie, Portalkontrollstäbe etc.</FONT>>]
+
+    eg1[label = "Ermittlungsgruppe 1\n(Tagschicht)"]
+    eg2[label = "Ermittlungsgruppe 2\n(Tagschicht)"]
+    eg3[label = "Ermittlungsgruppe 3\n(Tagschicht)"]
+    eg4[label = "Ermittlungsgruppe 4\n(Nachtschicht)"]
+    eg5[label = "Ermittlungsgruppe 5\n(Bereitschaft inkl. Vollmond)"]
+
+    lizenz_elementar[label = "Elementarmagie"]
+    lizenz_illusion[label = "Illusionsmagie"]
+    lizenz_beschwoer[label = "Beschwörung und Bannung"]
+    lizenz_weissag[label = "Weissagung und Hellsicht"]
+    lizenz_alchemie[label = "Alchemie und Tränke"]
+    lizenz_schutz[label = "Schutz- und Wehrzauber"]
+    lizenz_vertraut[label = "Vertrautenregistrierung"]
 
 
     leitung -- leitung_welt
@@ -32,16 +51,30 @@ graph organigramm {
     leitung_magie -- betruung
     leitung_magie -- entwickl
     leitung_magie -- administ
-    leitung_welt -- beschaffung_magisch
     leitung_welt -- ermittlungen
-    leitung_welt -- beschaffung_profan
     leitung_welt -- beschwerden
-    leitung_welt -- controlling
-    leitung_welt -- betruung
     leitung_welt -- personal
     leitung_welt -- controll
     leitung_welt -- betruung
     leitung_welt -- entwickl
     leitung_welt -- administ
-    
+    leitung_welt -- beschaffung_profan
+    leitung_welt -- beschaffung_magisch
+
+    ermittlungen -- eg1
+    ermittlungen -- eg2
+    ermittlungen -- eg3
+    ermittlungen -- eg4
+    ermittlungen -- eg5
+
+    lizenz -- lizenz_elementar
+    lizenz -- lizenz_illusion
+    lizenz -- lizenz_beschwoer
+    lizenz -- lizenz_weissag
+    lizenz -- lizenz_alchemie
+    lizenz -- lizenz_schutz
+    lizenz -- lizenz_vertraut
+
+    {rank=same; eg1 -- eg2 -- eg3 -- eg4 -- eg5 [style=invis]}
+    {rank=same; lizenz_elementar -- lizenz_illusion -- lizenz_beschwoer -- lizenz_weissag -- lizenz_alchemie -- lizenz_schutz -- lizenz_vertraut [style=invis]}
 }
