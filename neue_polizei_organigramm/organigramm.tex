@@ -1,0 +1,143 @@
+\documentclass[12pt]{article}
+\input{../ministerium_stil}
+
+% Column geometry in mm; 6 columns fill the 396 mm text width of A3 landscape.
+\def\colw{61}
+\def\gap{5.9}
+\def\busy{-110}
+
+\tikzset{
+  stab/.style={draw=nacht!60, fill=papier, line width=0.5pt, inner sep=2mm,
+    align=center, text width=112mm},
+  einheit/.style={fill=nacht, text=white, inner xsep=2mm, inner ysep=3mm,
+    align=center, text width=\colw mm-9mm,
+    execute at begin node={\hyphenpenalty=2000 }},
+  referat/.style={draw=nacht!40, fill=papier, line width=0.4pt, inner xsep=2mm,
+    inner ysep=2.4mm, align=left, text width=\colw mm-13mm,
+    execute at begin node={\hyphenpenalty=2000 }},
+  marke/.style={draw=nacht, line width=0.6pt, minimum size=5.5mm, inner sep=0pt,
+    font=\footnotesize\bfseries, text=nacht},
+}
+
+% #1 node name, #2 one of M, P, MP
+\newcommand{\marken}[2]{%
+  \ifstrequal{#2}{M}{\node[marke, fill=iris] at ($(#1.north east)+(-5mm,0)$) {M};}{}%
+  \ifstrequal{#2}{P}{\node[marke, fill=silber] at ($(#1.north east)+(-5mm,0)$) {P};}{}%
+  \ifstrequal{#2}{MP}{%
+    \node[marke, fill=iris] at ($(#1.north east)+(-11.5mm,0)$) {M};%
+    \node[marke, fill=silber] at ($(#1.north east)+(-5mm,0)$) {P};}{}%
+}
+
+% #1 column index
+\newcommand{\spalte}[1]{%
+  \pgfmathsetmacro{\spx}{#1*(\colw+\gap)}%
+  \xdef\spine{\spx+1.5}%
+  \coordinate (spalte-#1) at (\spx+\colw, \busy);
+  \xdef\letzter{spalte-#1}%
+}
+
+% #1 id, #2 Bezeichnung, #3 Leitung (may be empty), #4 Untertitel (may be empty), #5 M, P or MP
+\newcommand{\einheit}[5]{%
+  \node[einheit, anchor=north east] (#1) at ($(\letzter.south east)+(0,-6mm)$)
+    {\textbf{#2}%
+     \ifstrempty{#3}{}{\\(#3)}%
+     \ifstrempty{#4}{}{\\[2pt]{\footnotesize\color{white!75!nacht}#4}}};
+  \draw[hauptlinie] (\spine,\busy) |- (#1.west);
+  \marken{#1}{#5}%
+  \xdef\letzter{#1}\xdef\aktiv{#1}%
+}
+
+% #1 id, #2 Bezeichnung, #3 Untertitel (may be empty)
+\newcommand{\referat}[3]{%
+  \node[referat, anchor=north east] (#1) at ($(\letzter.south east)+(0,-3.5mm)$)
+    {#2\ifstrempty{#3}{}{\\{\footnotesize\color{grau}#3}}};
+  \draw[linie] ($(\aktiv.south west)+(2mm,0)$) |- (#1.west);
+  \xdef\letzter{#1}%
+}
+
+\begin{document}
+\centering
+\begin{tikzpicture}[x=1mm, y=1mm]
+  \pgfmathsetmacro{\breite}{6*\colw+5*\gap}
+  \pgfmathsetmacro{\mitte}{\breite/2}
+
+  \wappen{(11,-15)}
+
+  \node[anchor=north west, align=left, text=nacht] at (27,0)
+    {{\large Ministerium für drakonische Sicherheit}\\[1mm]
+     {\fontsize{30}{34}\selectfont\bfseries Abteilung 13}\\[2mm]
+     {\large\itshape Flache Hierarchien. Kurze Entscheidungswege. Agil.}};
+  \node[anchor=north east, align=right, text=grau] at (\breite,-19)
+    {Stand: 22. November 2026};
+  \draw[hauptlinie] (0,-33) -- (\breite,-33);
+
+  \node[leitung, anchor=north] (leitung) at (\mitte,-40)
+    {{\small\color{grau}Leitung}\\[2pt]{\Large\bfseries v.~Rossum}\\[1pt]
+     {\small\color{grau}Head of Abteilung 13}};
+
+  \node[stab, anchor=east] (buerokra) at (\mitte-15,-77)
+    {{\footnotesize\color{grau}Stabsstelle}\\[1pt]Bürokratieabbau\\
+     {\small Antragsstelle für Bürokratieabbau (Formular B-13a, dreifach)}};
+  \node[stab, anchor=west] (enablemt) at (\mitte+15,-77)
+    {{\footnotesize\color{grau}Stabsstelle}\\[1pt]Enablement\\
+     {\small Empowerment, Synergien, Pizza-Freitag (Selbstzahler)}};
+
+  \node[stab, anchor=east, fill=white, draw=gold, line width=1pt, text width=60mm] (magie) at (\mitte-15,-98)
+    {magische Leitung};
+  \node[stab, anchor=west, fill=white, draw=gold, line width=1pt, text width=60mm] (welt) at (\mitte+15,-98)
+    {profane Leitung};
+  \marken{magie}{M}
+  \marken{welt}{P}
+
+  \draw[hauptlinie] (leitung.south) -- (\mitte,\busy);
+  \draw[hauptlinie] (buerokra.east) -- (\mitte,-77);
+  \draw[hauptlinie] (enablemt.west) -- (\mitte,-77);
+  \draw[hauptlinie] (magie.east) -- (\mitte,-98);
+  \draw[hauptlinie] (welt.west) -- (\mitte,-98);
+  \draw[hauptlinie] (1.5,\busy) -- (5*\colw+5*\gap+1.5,\busy);
+
+  \spalte{0}
+  \einheit{lizenz}{Magische Lizenzerteilung}{Herr Schnarch}{Bearbeitungszeit 6 bis 8 Mondzyklen}{M}
+  \referat{lizenz_elementar}{Elementarmagie}{}
+  \referat{lizenz_illusion}{Illusionsmagie}{}
+  \referat{lizenz_beschwoer}{Beschwörung und Bannung}{}
+  \referat{lizenz_weissag}{Weissagung und Hellsicht}{}
+  \referat{lizenz_alchemie}{Alchemie und Tränke}{}
+  \referat{lizenz_schutz}{Schutz- und Wehrzauber}{}
+  \referat{lizenz_vertraut}{Vertrautenregistrierung}{}
+
+  \spalte{1}
+  \einheit{magieforensik}{Magieforensik}{v.~Wurmmoor}{Restmagie-Analyse, Fluchspuren, Ektoplasma-Labor}{M}
+  \einheit{heilung}{Übernatürliche Heilung}{v.~Wurmmoor}{Bisse, Flüche, Nachsorge;\\an Vollmond geschlossen}{M}
+
+  \spalte{2}
+  \einheit{ermittlungen}{Ermittlungen}{Frau Staufer}{}{MP}
+  \referat{eg1}{Ermittlungsgruppe 1}{Tagschicht}
+  \referat{eg2}{Ermittlungsgruppe 2}{Tagschicht}
+  \referat{eg3}{Ermittlungsgruppe 3}{Tagschicht}
+  \referat{eg4}{Ermittlungsgruppe 4}{Nachtschicht}
+  \referat{eg5}{Ermittlungsgruppe 5}{Bereitschaft inkl. Vollmond}
+
+  \spalte{3}
+  \einheit{beschwerden}{Beschwerden}{}{Zuständigkeitsklärung profan/magisch}{MP}
+  \einheit{personal}{Personal}{}{Talent Acquisition, Einstellungstests, Onboarding für Menschen und Neumenschen}{MP}
+  \einheit{controll}{Controlling}{}{Korruptionsprävention, Mittelverwendung im Sinne der Abteilung 13, KPIs und OKRs}{MP}
+
+  \spalte{4}
+  \einheit{betruung}{Betreuung}{}{Mentoring, Supervision nach Erstkontakt}{MP}
+  \einheit{entwickl}{Entwicklung}{}{profan: Datenbanken, Lagebild (Thalanpir), Prozess-Mining (Seelonis), natürlich alles quelloffen und on-prem...\\[2pt]magisch: Antimagie, Portalkontrollstäbe etc.}{MP}
+  \einheit{administ}{Verwaltung}{}{elektronische Aktenführung, Ausgabe elektronisch oder auf Pergament (auf Abruf)}{MP}
+
+  \spalte{5}
+  \einheit{beschaffung_profan}{Beschaffung profan}{}{Bürobedarf, Streifenwagen, Silbermunition}{P}
+  \einheit{beschaffung_magisch}{Beschaffung magisch}{}{Reagenzien, Kerzen, Salz in Großgebinden, Kalteisenmunition (getrennt vom Feenpersonal lagern)}{P}
+
+  \draw[hauptlinie] (0,-256) -- (\breite,-256);
+  \node[marke, fill=iris, anchor=west] (legende-m) at (1,-263) {M};
+  \node[anchor=west, text=grau] at ($(legende-m.east)+(1.5mm,0)$) {magische Leitung};
+  \node[marke, fill=silber, anchor=west] (legende-p) at (45,-263) {P};
+  \node[anchor=west, text=grau] at ($(legende-p.east)+(1.5mm,0)$) {profane Leitung};
+  \node[anchor=east, text=nacht] at (\breite,-263)
+    {\textbf{Wir stellen ein!} Offene Stellen in unserem Portal und im monatlichen Rundpergament.};
+\end{tikzpicture}
+\end{document}

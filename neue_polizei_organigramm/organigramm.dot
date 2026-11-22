@@ -2,22 +2,22 @@ graph organigramm {
     rankdir=LR
     node[shape=box]
     labelloc=t
-    label=<<FONT POINT-SIZE="26"><B>Abteilung 13</B></FONT><BR/><FONT POINT-SIZE="14"><I>flach. agil. übernatürlich.</I></FONT><BR/><FONT POINT-SIZE="11">Wir stellen ein! Offene Stellen in unserem Portal und im monatlichen Rundpergament.</FONT><BR/> >
+    label=<<FONT POINT-SIZE="26"><B>Abteilung 13</B></FONT><BR/><FONT POINT-SIZE="14"><I>Flache Hierarchien. Kurze Entscheidungswege. Agil.</I></FONT><BR/><FONT POINT-SIZE="11">Wir stellen ein! Offene Stellen in unserem Portal und im monatlichen Rundpergament.</FONT><BR/> >
 
     leitung[label = <Leitung<BR/>(v. Rossum)<BR/><FONT POINT-SIZE="10" COLOR="#555555">Head of Abteilung 13</FONT>>]
-    leitung_welt[label = <profane Leitung<BR/><FONT POINT-SIZE="10" COLOR="#555555">Mundane Operations</FONT>>]
-    leitung_magie[label = <magische Leitung<BR/><FONT POINT-SIZE="10" COLOR="#555555">Arcane Operations</FONT>>]
+    leitung_welt[label = "profane Leitung"]
+    leitung_magie[label = "magische Leitung"]
     ermittlungen[label = "Ermittlungen\n(Frau Staufer)"]
     magieforensik[label = <Magieforensik<BR/>(v. Wurmmoor)<BR/><FONT POINT-SIZE="10" COLOR="#555555">Restmagie-Analyse, Fluchspuren, Ektoplasma-Labor</FONT>>]
     heilung[label = <Übernatürliche Heilung<BR/>(v. Wurmmoor)<BR/><FONT POINT-SIZE="10" COLOR="#555555">Bisse, Flüche, Nachsorge<BR/>an Vollmond geschlossen</FONT>>]
     lizenz[label = <Magische Lizenzerteilung<BR/>(Herr Schnarch)<BR/><FONT POINT-SIZE="10" COLOR="#555555">Bearbeitungszeit 6 bis 8 Mondzyklen</FONT>>]
-    beschaffung_profan[label = <Beschaffung profan<BR/><FONT POINT-SIZE="10" COLOR="#555555">Bürobedarf, Streifenwagen,<BR/>Silbermunition (Grauzone, s. Beschaffung magisch)</FONT>>]
+    beschaffung_profan[label = <Beschaffung profan<BR/><FONT POINT-SIZE="10" COLOR="#555555">Bürobedarf, Streifenwagen,<BR/>Silbermunition</FONT>>]
     beschaffung_magisch[label = <Beschaffung magisch<BR/><FONT POINT-SIZE="10" COLOR="#555555">Reagenzien, Kerzen, Salz in Großgebinden,<BR/>Kalteisenmunition (getrennt vom Feenpersonal lagern)</FONT>>]
     beschwerden[label = <Beschwerden<BR/><FONT POINT-SIZE="10" COLOR="#555555">Zuständigkeitsklärung profan/magisch</FONT>>]
     personal[label = <Personal<BR/><FONT POINT-SIZE="10" COLOR="#555555">Talent Acquisition, Einstellungstests,<BR/>Onboarding für Menschen und Neumenschen</FONT>>]
     buerokra[label = <Bürokratieabbau<BR/><FONT POINT-SIZE="10" COLOR="#555555">Antragsstelle für Bürokratieabbau<BR/>(Formular B-13a, dreifach)</FONT>>]
     controll[label = <Controlling<BR/><FONT POINT-SIZE="10" COLOR="#555555">Korruptionsprävention, Mittelverwendung<BR/>im Sinne der Abteilung 13, KPIs und OKRs</FONT>>]
-    betruung[label = <Betreuung<BR/><FONT POINT-SIZE="10" COLOR="#555555">Mentoring, Supervision nach Erstkontakt, Obstkorb</FONT>>]
+    betruung[label = <Betreuung<BR/><FONT POINT-SIZE="10" COLOR="#555555">Mentoring, Supervision nach Erstkontakt</FONT>>]
     enablemt[label = <Enablement<BR/><FONT POINT-SIZE="10" COLOR="#555555">Empowerment, Synergien,<BR/>Pizza-Freitag (Selbstzahler)</FONT>>]
     administ[label = <Verwaltung<BR/><FONT POINT-SIZE="10" COLOR="#555555">elektronische Aktenführung,<BR/>Ausgabe elektronisch oder auf Pergament (auf Abruf)</FONT>>]
     entwickl[label = <Entwicklung<BR/><FONT POINT-SIZE="10" COLOR="#555555">profan: Datenbanken, Lagebild (Thalanpir), Prozess-Mining (Seelonis),<BR/>natürlich alles quelloffen und on-prem...<BR/>magisch: Antimagie, Portalkontrollstäbe etc.</FONT>>]

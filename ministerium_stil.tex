@@ -1,0 +1,40 @@
+% Gemeinsamer Stil der Organigramme des Ministeriums fuer drakonische Sicherheit.
+% Einbinden nach \documentclass mit \input{../ministerium_stil}.
+\usepackage[a3paper,landscape,margin=12mm]{geometry}
+\usepackage{fontspec}
+\usepackage[ngerman]{babel}
+\usepackage{etoolbox}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\setmainfont{TeX Gyre Heros}
+\pagestyle{empty}
+
+\definecolor{nacht}{HTML}{1F2A44}
+\definecolor{gold}{HTML}{B8901F}
+\definecolor{iris}{HTML}{E8C547}
+\definecolor{silber}{HTML}{B9C6D8}
+\definecolor{papier}{HTML}{F4F2EC}
+\definecolor{grau}{HTML}{5A5A5A}
+
+\tikzset{
+  hauptlinie/.style={draw=gold, line width=1.2pt},
+  linie/.style={draw=nacht!60, line width=0.5pt},
+  leitung/.style={draw=gold, line width=1.5pt, fill=white, inner sep=3mm,
+    align=center, minimum width=70mm},
+}
+
+% #1 center of the shield in the surrounding picture's coordinates, e.g. (11,-13)
+\newcommand{\wappen}[1]{%
+  \begin{scope}[shift={#1}, x=10mm, y=10mm]
+    \filldraw[fill=gold, draw=nacht, line width=1.2pt]
+      (-1,1.1) -- (1,1.1) -- (1,0.1)
+      .. controls (1,-0.7) and (0.4,-1.0) .. (0,-1.3)
+      .. controls (-0.4,-1.0) and (-1,-0.7) .. (-1,0.1) -- cycle;
+    \fill[nacht] (-0.75,0.05) .. controls (-0.3,0.6) and (0.3,0.6) .. (0.75,0.05)
+      .. controls (0.3,-0.45) and (-0.3,-0.45) .. (-0.75,0.05) -- cycle;
+    \fill[iris] (0,0.05) circle (0.29);
+    \fill[nacht] (0,0.34) .. controls (0.09,0.15) and (0.09,-0.05) .. (0,-0.24)
+      .. controls (-0.09,-0.05) and (-0.09,0.15) .. (0,0.34) -- cycle;
+  \end{scope}%
+}
