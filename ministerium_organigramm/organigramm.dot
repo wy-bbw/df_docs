@@ -14,7 +14,7 @@ graph organigramm_ministerium
 
     hafenzoll[label="Hafenzoll"]
     feenwaren[label="Einfuhrkontrolle Feenwaren"]
-    niemalsland[label="Grenzübergänge Niemalsland"]
+    niemalsland[label="Grenzübergänge Nevernever"]
     asservaten[label="Asservatenkammer"]
 
     hoefe[label="Höfe und Reiche"]
