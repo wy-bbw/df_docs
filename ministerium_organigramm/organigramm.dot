@@ -1,0 +1,85 @@
+graph organigramm_ministerium
+{
+    rankdir=LR
+    node[shape=box]
+
+    leitung[label="Leitung\n(Rognar Steinfels)"]
+    zoll[label="Zoll"]
+    brueckenzoll[label="Brückenzoll (Ochsenknochen)\nBrückenunterhaltung, Zollsprachregelung (\"Drachenzoll\"),\nVollstreckung"]
+    abt13[label="Abteilung 13\n(v. Rossum)\n=> s. Organigramm Abt. 13"]
+    personal[label="Personal"]
+    beschwerde[label="Beschwerden\n(Steinbrech)"]
+    nachrichten[label="Nachrichtendienst"]
+    arkanarcheo[label="arkane Archäologie"]
+
+    hafenzoll[label="Hafenzoll"]
+    feenwaren[label="Einfuhrkontrolle Feenwaren"]
+    niemalsland[label="Grenzübergänge Niemalsland"]
+    asservaten[label="Asservatenkammer"]
+
+    hoefe[label="Höfe und Reiche"]
+    sommerhof[label="Referat Sommerhof\nFestgenehmigungen, Biosicherheit"]
+    winterhof[label="Referat Winterhof\nAnwerbeersuchen, Wehrfragen"]
+    weisserrat[label="Referat Weißer Rat\nBestandsschutz, Traditionspflege"]
+    innerereiche[label="Referat Innere Reiche\nZeitkontinuität, Kristallprävention"]
+    aeusserereiche[label="Referat Äußere Reiche\nGrenzflächenstabilität, Außenkontakte"]
+
+    rekrutierung[label="Rekrutierung"]
+    gleichstellung[label="Gleichstellung\n(Faye, Werwölfe, Magier\nund andere Wesenheiten)"]
+    besoldung[label="Besoldung"]
+    fortbildung[label="Fortbildung"]
+
+    beschwerdeannahme[label="Beschwerdeannahme"]
+    widerspruch[label="Widerspruchsstelle"]
+    beschwerdebeschwerde[label="Beschwerden über\ndie Beschwerdestelle"]
+
+    auswertung[label="Auswertung"]
+    fernaufklaerung[label="Fernaufklärung\n(Kristallkugeln, Spiegel)"]
+
+    grabung[label="Grabungen"]
+    artefakte[label="Artefaktsicherung\nund Restaurierung"]
+    depot[label="Depot und Archiv"]
+
+    presse[label="Pressestelle\n\"Goldige Kommunikation\""]
+    zentral[label="Zentrale Dienste"]
+    haushalt[label="Haushalt"]
+    it[label="IT\n(quelloffen, on-prem)"]
+    hausdienste[label="Hausdienste"]
+    gefahrenabwehr[label="Gefahrenabwehr\nKatastrophenschutz"]
+
+    leitung -- zoll
+    zoll -- brueckenzoll
+    zoll -- hafenzoll
+    zoll -- feenwaren
+    zoll -- niemalsland
+    zoll -- asservaten
+    leitung -- hoefe
+    hoefe -- sommerhof
+    hoefe -- winterhof
+    hoefe -- weisserrat
+    hoefe -- innerereiche
+    hoefe -- aeusserereiche
+    leitung -- abt13
+    leitung -- personal
+    personal -- rekrutierung
+    personal -- gleichstellung
+    personal -- besoldung
+    personal -- fortbildung
+    leitung -- beschwerde
+    beschwerde -- beschwerdeannahme
+    beschwerde -- widerspruch
+    beschwerde -- beschwerdebeschwerde
+    leitung -- nachrichten
+    nachrichten -- auswertung
+    nachrichten -- fernaufklaerung
+    leitung -- arkanarcheo
+    arkanarcheo -- grabung
+    arkanarcheo -- artefakte
+    arkanarcheo -- depot
+    leitung -- presse
+    leitung -- zentral
+    zentral -- haushalt
+    zentral -- it
+    zentral -- hausdienste
+    leitung -- gefahrenabwehr
+}

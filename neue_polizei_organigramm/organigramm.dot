@@ -1,0 +1,47 @@
+graph organigramm {
+    leitung[label = "Leitung\n(v. Rossum)"]
+    leitung_welt[label = "profane Leitung"]
+    leitung_magie[label = "magische Leitung"]
+    ermittlungen[label = "Ermittlungen\n(Frau Staufer)"]
+    magieforensik[label = "Magieforensik\n(v. Wurmmoor)"]
+    heilung[label = "Übernatürliche Heilung\n(v. Wurmmoor)"]
+    lizenz[label = "Magische Lizenzerteilung\n(Herr Schnarch)"]
+    beschaffung_profan[label = "Beschaffung profan"]
+    beschaffung_magisch[label = "Beschaffung magisch"]
+    beschwerden[label = "Beschwerden"]
+    personal[label = "Personal"]
+    buerokra[label = "Bürokratieabbau"]
+    controll[label = "Controlling"]
+    betruung[label = "Betreuung"]
+    enablemt[label = "Enablement"]
+    administ[label = "Verwaltung"]
+    entwickl[label = "Entwicklung"]
+
+
+    leitung -- leitung_welt
+    leitung -- leitung_magie
+    leitung -- buerokra
+    leitung -- enablemt
+    leitung_magie -- magieforensik
+    leitung_magie -- heilung
+    leitung_magie --  ermittlungen
+    leitung_magie -- lizenz
+    leitung_magie -- beschwerden
+    leitung_magie -- personal
+    leitung_magie -- controll
+    leitung_magie -- betruung
+    leitung_magie -- entwickl
+    leitung_magie -- administ
+    leitung_welt -- beschaffung_magisch
+    leitung_welt -- ermittlungen
+    leitung_welt -- beschaffung_profan
+    leitung_welt -- beschwerden
+    leitung_welt -- controlling
+    leitung_welt -- betruung
+    leitung_welt -- personal
+    leitung_welt -- controll
+    leitung_welt -- betruung
+    leitung_welt -- entwickl
+    leitung_welt -- administ
+    
+}
