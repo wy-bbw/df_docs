@@ -12,7 +12,7 @@ graph organigramm {
     heilung[label = <Übernatürliche Heilung<BR/>(v. Wurmmoor)<BR/><FONT POINT-SIZE="10" COLOR="#555555">Bisse, Flüche, Nachsorge<BR/>an Vollmond geschlossen</FONT>>]
     lizenz[label = <Magische Lizenzerteilung<BR/>(Herr Schnarch)<BR/><FONT POINT-SIZE="10" COLOR="#555555">Bearbeitungszeit 6 bis 8 Mondzyklen</FONT>>]
     beschaffung_profan[label = <Beschaffung profan<BR/><FONT POINT-SIZE="10" COLOR="#555555">Bürobedarf, Streifenwagen,<BR/>Silbermunition (Grauzone, s. Beschaffung magisch)</FONT>>]
-    beschaffung_magisch[label = <Beschaffung magisch<BR/><FONT POINT-SIZE="10" COLOR="#555555">Reagenzien, Kreide, Salz in Großgebinden,<BR/>Kalteisenmunition (getrennt vom Feenpersonal lagern)</FONT>>]
+    beschaffung_magisch[label = <Beschaffung magisch<BR/><FONT POINT-SIZE="10" COLOR="#555555">Reagenzien, Kerzen, Salz in Großgebinden,<BR/>Kalteisenmunition (getrennt vom Feenpersonal lagern)</FONT>>]
     beschwerden[label = <Beschwerden<BR/><FONT POINT-SIZE="10" COLOR="#555555">Zuständigkeitsklärung profan/magisch</FONT>>]
     personal[label = <Personal<BR/><FONT POINT-SIZE="10" COLOR="#555555">Talent Acquisition, Einstellungstests,<BR/>Onboarding für Menschen und Neumenschen</FONT>>]
     buerokra[label = <Bürokratieabbau<BR/><FONT POINT-SIZE="10" COLOR="#555555">Antragsstelle für Bürokratieabbau<BR/>(Formular B-13a, dreifach)</FONT>>]
