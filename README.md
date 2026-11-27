@@ -1,5 +1,7 @@
 # Organigramme des Ministeriums fuer drakonische Sicherheit
 
+[![PDFs](https://github.com/wy-bbw/df_docs/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/wy-bbw/df_docs/actions/workflows/build.yml)
+
 ## Bauen
 
 Die PDFs werden mit `lualatex` gebaut, nicht mit `pdflatex`. Die Schrift wird ueber
@@ -15,6 +17,23 @@ ueber einen relativen Pfad eingebunden wird:
 
 Die `organigramm.dot`-Dateien sind die aeltere Graphviz-Fassung. Ein
 `dot -Tpdf organigramm.dot -o organigramm.pdf` ueberschreibt das PDF aus TeX.
+
+## Automatischer Bau
+
+GitHub Actions (`.github/workflows/build.yml`) baut beide PDFs bei jedem Push auf
+`master` und bei jedem Pull Request. Die PDFs haengen als Artefakt `organigramme` am
+jeweiligen Lauf im Actions-Tab und werden nach 90 Tagen geloescht.
+
+Ein Tag veroeffentlicht die PDFs dauerhaft als GitHub Release:
+
+```sh
+git tag v1.0
+git push origin v1.0
+```
+
+Die neueste Fassung liegt immer unter
+`https://github.com/wy-bbw/df_docs/releases/latest/download/organigramm_ministerium.pdf`
+bzw. `.../organigramm_abt13.pdf`.
 
 ## Aufbau
 
