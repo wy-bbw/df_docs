@@ -1,0 +1,47 @@
+name: PDFs
+
+on:
+  push:
+    branches: [master]
+    tags: ['*']
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Organigramm Ministerium
+        uses: xu-cheng/latex-action@v4
+        with:
+          working_directory: ministerium_organigramm
+          root_file: organigramm.tex
+          args: -lualatex -file-line-error -halt-on-error -interaction=nonstopmode -jobname=organigramm_ministerium
+
+      - name: Organigramm Abteilung 13
+        uses: xu-cheng/latex-action@v4
+        with:
+          working_directory: neue_polizei_organigramm
+          root_file: organigramm.tex
+          args: -lualatex -file-line-error -halt-on-error -interaction=nonstopmode -jobname=organigramm_abt13
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: organigramme
+          path: |
+            ministerium_organigramm/organigramm_ministerium.pdf
+            neue_polizei_organigramm/organigramm_abt13.pdf
+          if-no-files-found: error
+
+      - name: Release
+        if: github.ref_type == 'tag'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >
+          gh release create "$GITHUB_REF_NAME" --generate-notes
+          ministerium_organigramm/organigramm_ministerium.pdf
+          neue_polizei_organigramm/organigramm_abt13.pdf
