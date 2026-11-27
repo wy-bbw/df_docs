@@ -24,7 +24,7 @@ GitHub Actions (`.github/workflows/build.yml`) baut beide PDFs bei jedem Push au
 `master` und bei jedem Pull Request. Die PDFs haengen als Artefakt `organigramme` am
 jeweiligen Lauf im Actions-Tab und werden nach 90 Tagen geloescht.
 
-Ein Tag veroeffentlicht die PDFs dauerhaft als GitHub Release:
+Ein Tag der Form `vX.Y` veroeffentlicht die PDFs dauerhaft als GitHub Release:
 
 ```sh
 git tag v1.0
